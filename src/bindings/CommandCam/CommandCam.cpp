@@ -499,12 +499,13 @@ int main(int argc, char **argv)
 		// Get video info header structure from media type
 		pVih = (VIDEOINFOHEADER*)mt.pbFormat;
 
-		if (new_camera_bugfix) {
-			pBuffer = rot90(pBuffer, pVih->bmiHeader.biWidth, pVih->bmiHeader.biHeight, pVih->bmiHeader.biBitCount / 8);
-			LONG tmp = pVih->bmiHeader.biWidth;
-			pVih->bmiHeader.biWidth = pVih->bmiHeader.biHeight;
-			pVih->bmiHeader.biHeight = tmp;
-		}
+		// from https://coilinc.slack.com/archives/C052V6S9ERJ/p1776130449596819?thread_ts=1723781834.219739&cid=C052V6S9ERJ
+		// if (new_camera_bugfix) {
+		// 	pBuffer = rot90(pBuffer, pVih->bmiHeader.biWidth, pVih->bmiHeader.biHeight, pVih->bmiHeader.biBitCount / 8);
+		// 	LONG tmp = pVih->bmiHeader.biWidth;
+		// 	pVih->bmiHeader.biWidth = pVih->bmiHeader.biHeight;
+		// 	pVih->bmiHeader.biHeight = tmp;
+		// }
 
 		// Print the resolution of the captured image
 		fprintf(stderr, "Capture resolution: %dx%d\n",
